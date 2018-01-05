@@ -1,11 +1,18 @@
 '''
-    Fetches a list of repositories to which a user has contributed to on GitHub
+Fetches a list of repositories to which a user has contributed to on GitHub.
+
+Usage:
+  fetch_repos.py <user>
+  fetch_repos.py -h
+
+Options:
+  -h, --help    Display this help text.
 '''
 
 
 import math
 import requests
-import textwrap
+from docopt import docopt
 
 API_URL = "https://api.github.com/search/issues"
 RESULTS_PER_PAGE = 30
@@ -60,9 +67,11 @@ def get_repo_list(user):
 
 
 if __name__ == "__main__":
-    user = input("Enter GitHub username: ")
-    repos = get_repo_list(user)
-    if repos:
+    arguments = docopt(__doc__)
+
+    user = arguments['<user>']
+    repo_list = get_repo_list(user)
+    if repo_list:
         print()
-        for repo in repos:
+        for repo in repo_list:
             print(repo)
