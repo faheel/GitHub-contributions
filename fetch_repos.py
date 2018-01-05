@@ -1,3 +1,5 @@
+#! venv/bin/python3
+
 '''
 Fetches a list of repositories to which a user has contributed to on GitHub.
 
@@ -72,6 +74,5 @@ if __name__ == "__main__":
     user = arguments['<user>']
     repo_list = get_repo_list(user)
     if repo_list:
-        print()
         for repo in repo_list:
             print(repo)

@@ -1,3 +1,5 @@
+#! venv/bin/python3
+
 '''
 Generates Markdown for the repositories to which a user has contributed to on
 GitHub.
