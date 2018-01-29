@@ -5,15 +5,17 @@ Generates Markdown for the repositories to which a user has contributed to on
 GitHub.
 
 Usage:
-  generate_markdown.py <user> [-o <type>]
-  generate_markdown.py <user> -o table [-c <cols>]
+  generate_markdown.py <user> [-o <type>] [-r]
+  generate_markdown.py <user> -o table [-c <cols>] [-r]
   generate_markdown.py -h
 
 Options:
-  -h, --help                     Display this help text.
   -o <type>, --output-as <type>  Generate Markdown for either a list or a table
                                  [default: list].
   -c <cols>, --columns <cols>    Number of columns for the table [default: 3].
+  -r, --reverse-order            Generate output in reverse chronological
+                                 order.
+  -h, --help                     Display this help text.
 '''
 
 import os
@@ -65,6 +67,8 @@ if __name__ == '__main__':
     user = arguments['<user>']
     repo_list = get_repo_list(user)
     if repo_list:
+        if arguments['--reverse-order']:
+            repo_list.reverse()
         output_as = arguments['--output-as']
         output_dir = "output"
         if not os.path.exists(output_dir):

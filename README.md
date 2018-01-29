@@ -23,12 +23,15 @@ Get details about all the projects to which you have contributed to on GitHub.
 ### Fetch list of repositories contributed to
 Run the script `fetch_repos.py` along with your GitHub username to get a simple
 list of repositories you've contributed to:
-```bash
-Usage:
-  fetch_repos.py <user>
-  fetch_repos.py -h
 ```
-Use the `-h` option for help.
+Usage:
+  fetch_repos.py <user> [-r]
+  fetch_repos.py -h
+
+Options:
+  -r, --reverse-order   Display the list in reverse chronological order.
+  -h, --help            Display this help text.
+```
 
 #### Example
 ```bash
@@ -46,13 +49,20 @@ PowerShell/PowerShell
 Run the script `generate_markdown.py` along with your GitHub username to get a
 Markdown file with either a list or table of repositories you've contributed
 to:
-```bash
-Usage:
-  generate_markdown.py <user> [-o <type>]
-  generate_markdown.py <user> -o table [-c <cols>]
-  generate_markdown.py -h
 ```
-where `<type>` is either `list` (default) or `table`. Use the `-h` option for help.
+Usage:
+  generate_markdown.py <user> [-o <type>] [-r]
+  generate_markdown.py <user> -o table [-c <cols>] [-r]
+  generate_markdown.py -h
+
+Options:
+  -o <type>, --output-as <type>  Generate Markdown for either a list or a table
+                                 [default: list].
+  -c <cols>, --columns <cols>    Number of columns for the table [default: 3].
+  -r, --reverse-order            Generate output in reverse chronological
+                                 order.
+  -h, --help                     Display this help text.
+```
 
 The generated Markdown files are saved in a directory named `output` respective
 to the directory from where the script was run.

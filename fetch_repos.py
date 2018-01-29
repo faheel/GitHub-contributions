@@ -4,11 +4,12 @@
 Fetches a list of repositories to which a user has contributed to on GitHub.
 
 Usage:
-  fetch_repos.py <user>
+  fetch_repos.py <user> [-r]
   fetch_repos.py -h
 
 Options:
-  -h, --help    Display this help text.
+  -r, --reverse-order   Display the list in reverse chronological order.
+  -h, --help            Display this help text.
 '''
 
 
@@ -74,5 +75,7 @@ if __name__ == "__main__":
     user = arguments['<user>']
     repo_list = get_repo_list(user)
     if repo_list:
+        if arguments['--reverse-order']:
+            repo_list.reverse()
         for repo in repo_list:
             print(repo)
