@@ -1,5 +1,10 @@
-# GitHub contributions
-Get details about all the projects to which you have contributed to on GitHub.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11466676/38295735-944bd9e0-380c-11e8-995c-bfc21069a6c9.png" alt="">
+</p>
+
+<h3 align="center">GitHub contributions</h3>
+
+<p align="center">Get details about all the projects to which you have contributed to on GitHub.</p>
 
 ## Setup
 1. Clone the repo and `cd` into it.
