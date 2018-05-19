@@ -2,16 +2,16 @@
   <img src="https://user-images.githubusercontent.com/11466676/38295735-944bd9e0-380c-11e8-995c-bfc21069a6c9.png" alt="">
 </p>
 
-<h3 align="center">GitHub contributions</h3>
+<h1 align="center">GitHub contributions</h3>
 
-<p align="center">Get details about all the projects to which you have contributed to on GitHub.</p>
+Get details about all the projects to which you have contributed to on GitHub.
 
 ## Setup
 1. Clone the repo and `cd` into it.
 
 2. Create a Python 3 virtual environment (named `venv` here):
    ```bash
-   virtualenv-3 venv
+   virtualenv --python=/usr/bin/python3 venv
    ```
 
 3. Activate the virtual environment:
