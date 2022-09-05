@@ -65,7 +65,7 @@ def get_repo_list(user):
 
         return repo_list
 
-    print("Unable to fetch repositories")
+    print("Unable to fetch repositories for", user)
     return None
 
 
