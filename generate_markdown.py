@@ -5,14 +5,15 @@ Generates Markdown for the repositories to which a user has contributed to on
 GitHub.
 
 Usage:
-  generate_markdown.py <user> [-o <type>] [-r]
-  generate_markdown.py <user> -o table [-c <cols>] [-r]
+  generate_markdown.py <user> [-o <type>] [-r] [-a]
+  generate_markdown.py <user> -o table [-c <cols>] [-r] [-a]
   generate_markdown.py -h
 
 Options:
   -o <type>, --output-as <type>  Generate Markdown for either a list or a table
                                  [default: list].
   -c <cols>, --columns <cols>    Number of columns for the table [default: 3].
+  -a, --append                   Append to file.
   -r, --reverse-order            Generate output in reverse chronological
                                  order.
   -h, --help                     Display this help text.
@@ -35,8 +36,8 @@ LIST_ITEM = '''\
 '''
 
 
-def output_list(user, repo_list, output_file):
-    with open(output_file, "w") as file:
+def output_list(user, repo_list, output_file, mode):
+    with open(output_file, mode) as file:
         for repo in repo_list:
             owner, repo_name = repo.split("/")
             file.write(LIST_ITEM.format(user=user, repo=repo, owner=owner,
@@ -45,8 +46,8 @@ def output_list(user, repo_list, output_file):
               .format(output_file))
 
 
-def output_table(user, repo_list, num_columns, output_file):
-    with open(output_file, "w") as file:
+def output_table(user, repo_list, num_columns, output_file, mode):
+    with open(output_file, mode) as file:
         file.write("<table>\n<tr>\n")
         repos_written = 0
         for repo in repo_list:
@@ -64,6 +65,7 @@ def output_table(user, repo_list, num_columns, output_file):
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 
+    mode = "a" if arguments['--append'] else "w"
     user = arguments['<user>']
     repo_list = get_repo_list(user)
     if repo_list:
@@ -76,10 +78,10 @@ if __name__ == '__main__':
         output_file = os.path.join(output_dir, "contribution-" + output_as +
                                    ".md")
         if output_as == 'list':
-            output_list(user, repo_list, output_file)
+            output_list(user, repo_list, output_file, mode)
         elif output_as == 'table':
             num_columns = int(arguments['--columns'])
-            output_table(user, repo_list, num_columns, output_file)
+            output_table(user, repo_list, num_columns, output_file, mode)
         else:
             print("Invalid value for output type! Possible values: 'list', "
                   "'table'")
